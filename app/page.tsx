@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useMiniKit } from '@coinbase/minikit';
+import { useOnchainKit } from '@coinbase/onchainkit';
 import { AppShell } from '../components/AppShell';
 import { WalletConnector } from '../components/WalletConnector';
 import { SearchBar } from '../components/SearchBar';
@@ -13,7 +13,7 @@ import { mockNotes, mockLeaderboard, mockRequests } from '../lib/mockData';
 import type { Note, User, Request } from '../lib/types';
 
 export default function HomePage() {
-  const { context } = useMiniKit();
+  const onchainKit = useOnchainKit();
   const [isConnected, setIsConnected] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredNotes, setFilteredNotes] = useState<Note[]>(mockNotes);
