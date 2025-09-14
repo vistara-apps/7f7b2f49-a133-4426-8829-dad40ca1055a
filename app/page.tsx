@@ -9,6 +9,7 @@ import { NoteCard } from '../components/NoteCard';
 import { UploadButton } from '../components/UploadButton';
 import { RequestButton } from '../components/RequestButton';
 import { LeaderboardItem } from '../components/LeaderboardItem';
+import { PaymentModal } from '../components/PaymentModal';
 import { mockNotes, mockLeaderboard, mockRequests } from '../lib/mockData';
 import type { Note, User, Request } from '../lib/types';
 
@@ -18,6 +19,16 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredNotes, setFilteredNotes] = useState<Note[]>(mockNotes);
   const [activeTab, setActiveTab] = useState<'notes' | 'requests' | 'leaderboard'>('notes');
+  const [paymentModal, setPaymentModal] = useState<{
+    isOpen: boolean;
+    type: 'upload' | 'request' | null;
+    recipient?: string;
+    amount?: string;
+    description?: string;
+  }>({
+    isOpen: false,
+    type: null,
+  });
 
   useEffect(() => {
     // Filter notes based on search query
@@ -39,13 +50,45 @@ export default function HomePage() {
   };
 
   const handleUpload = () => {
-    // TODO: Implement file upload to IPFS
-    console.log('Upload note functionality');
+    // Show payment modal for premium upload feature
+    setPaymentModal({
+      isOpen: true,
+      type: 'upload',
+      recipient: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e', // Example recipient address
+      amount: '1000000', // 1 USDC
+      description: 'Premium note upload - Access to exclusive study materials',
+    });
   };
 
   const handleRequest = () => {
-    // TODO: Implement topic request
-    console.log('Request topic functionality');
+    // Show payment modal for premium request feature
+    setPaymentModal({
+      isOpen: true,
+      type: 'request',
+      recipient: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e', // Example recipient address
+      amount: '500000', // 0.5 USDC
+      description: 'Priority topic request - Get your study materials faster',
+    });
+  };
+
+  const handlePaymentSuccess = (transactionHash: string) => {
+    console.log('Payment successful:', transactionHash);
+    // Here you would implement the actual upload/request logic
+    if (paymentModal.type === 'upload') {
+      // TODO: Implement file upload to IPFS
+      console.log('Proceeding with note upload');
+    } else if (paymentModal.type === 'request') {
+      // TODO: Implement topic request
+      console.log('Proceeding with topic request');
+    }
+  };
+
+  const handlePaymentError = (error: string) => {
+    console.error('Payment failed:', error);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModal({ isOpen: false, type: null });
   };
 
   if (!isConnected) {
@@ -236,6 +279,16 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <PaymentModal
+        isOpen={paymentModal.isOpen}
+        onClose={closePaymentModal}
+        recipient={paymentModal.recipient || ''}
+        amount={paymentModal.amount}
+        description={paymentModal.description}
+        title={paymentModal.type === 'upload' ? 'Upload Premium Notes' : 'Priority Topic Request'}
+      />
     </AppShell>
   );
 }
