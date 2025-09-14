@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@coinbase/minikit": "^0.1.0",
     "@coinbase/onchainkit": "^0.30.0",
     "next": "15.0.0",
     "react": "^18.2.0",
@@ -17,7 +16,8 @@
     "viem": "^2.0.0",
     "wagmi": "^2.0.0",
     "lucide-react": "^0.400.0",
-    "pino-pretty": "^11.0.0"
+    "pino-pretty": "^11.0.0",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
