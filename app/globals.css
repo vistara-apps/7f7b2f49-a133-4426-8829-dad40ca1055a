@@ -8,30 +8,30 @@
   }
   
   body {
-    @apply bg-bg text-text-primary;
+    @apply bg-[hsl(215,30%,12%)] text-[hsl(0,0%,95%)];
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors duration-200;
+    @apply bg-[hsl(210,80%,50%)] text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors duration-200;
   }
-  
+
   .btn-secondary {
-    @apply bg-surface text-text-primary px-4 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors duration-200;
+    @apply bg-[hsl(215,30%,16%)] text-[hsl(0,0%,95%)] px-4 py-2 rounded-lg font-medium hover:bg-gray-700 transition-colors duration-200;
   }
-  
+
   .btn-accent {
-    @apply bg-accent text-bg px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors duration-200;
+    @apply bg-[hsl(160,70%,45%)] text-[hsl(215,30%,12%)] px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors duration-200;
   }
   
   .card {
-    @apply bg-surface rounded-lg p-4 shadow-card hover:shadow-hover transition-shadow duration-200;
+    @apply bg-[hsl(215,30%,16%)] rounded-lg p-4 shadow-card hover:shadow-hover transition-shadow duration-200;
   }
-  
+
   .input-field {
-    @apply bg-surface border border-gray-600 rounded-lg px-3 py-2 text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply bg-[hsl(215,30%,16%)] border border-gray-600 rounded-lg px-3 py-2 text-[hsl(0,0%,95%)] placeholder-[hsl(210,20%,70%)] focus:outline-none focus:ring-2 focus:ring-[hsl(210,80%,50%)] focus:border-transparent;
   }
 }
 
@@ -49,6 +49,6 @@
   }
   
   .text-caption {
-    @apply text-sm text-text-secondary;
+    @apply text-sm text-[hsl(210,20%,70%)];
   }
 }
